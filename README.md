@@ -1,5 +1,6 @@
 ## Opentofu IAM Users with Policy statements
 
+<!-- 
 .
 ├── humans
 │   └── iam
@@ -20,7 +21,7 @@
         ├── public.gpg
         ├── variables.tf
         └── versions.tf
-
+-->
 
 ### using gpg password
 [https://stackoverflow.com/questions/53534722/how-to-enable-the-console-login-for-iam-user-in-terraform](https://stackoverflow.com/questions/53534722/how-to-enable-the-console-login-for-iam-user-in-terraform)
@@ -32,12 +33,14 @@ This approach is preferred when you want to maintain high security, especially f
 
 - Create a gpg key for each user
 
+<!-- 
 acollins   afa.collins@gmail.com
 asusan     afa.susan@gmail.com
 aallen     afa.allen@gmail.com
 amyra      afa.myra@gmail.com
 acecil     afa.cecil@gmail.com
-arose      afa.rose@gmail.com
+arose      afa.rose@gmail.com 
+-->
 
 - Mk a diretory in the dirrectory humans/iam/
 - execute the script to generate the tokens
