@@ -5,12 +5,12 @@ admin_password="Secret2024$"
 
 # Declare an associative array of users and emails
 declare -A users_emails=(
-  ["acollins"]="afa.collins@gmail.com"
-  ["asusan"]="afa.susan@gmail.com"
-  ["aallen"]="afa.allen@gmail.com"
-  ["amyra"]="afa.myra@gmail.com"
-  ["acecil"]="afa.cecil@gmail.com"
-  ["arose"]="afa.rose@gmail.com"
+  ["afacollins1"]="afanwi.collins1@gmail.com"
+  ["afacollins2"]="afanwi.collins2@gmail.com"
+  ["afacollins3"]="afanwi.collins3@gmail.com"
+  ["afacollins4"]="afanwi.collins4@gmail.com"
+  ["afacollins5"]="afanwi.collins5@gmail.com"
+  ["afacollins6"]="afa.rose@gmail.com"
 )
 
 # Loop through each user and email

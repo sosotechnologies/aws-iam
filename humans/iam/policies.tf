@@ -32,7 +32,7 @@ module "read_only_policy" {
   })
 }
 
-resource "aws_iam_user_policy_attachment" "asusan_read_only_policy" {
-  user       = module.asusan_iam_user.this_iam_user_name
+resource "aws_iam_user_policy_attachment" "afacollins2_read_only_policy" {
+  user       = module.afacollins2_iam_user.this_iam_user_name
   policy_arn = module.read_only_policy.policy_arn
 }

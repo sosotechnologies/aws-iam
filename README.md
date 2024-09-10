@@ -34,22 +34,37 @@ This approach is preferred when you want to maintain high security, especially f
 - Create a gpg key for each user
 
 <!-- 
-acollins   afa.collins@gmail.com
-asusan     afa.susan@gmail.com
-aallen     afa.allen@gmail.com
-amyra      afa.myra@gmail.com
-acecil     afa.cecil@gmail.com
-arose      afa.rose@gmail.com 
+afacollins1     afanwi.collins1@gmail.com
+afacollins2     afanwi.collins2@gmail.com
+afacollins3     afanwi.collins3@gmail.com
+afacollins4     afanwi.collins4@gmail.com
+afacollins5     afanwi.collins5@gmail.com
+afacollins6     afanwi.collins6@gmail.com
 -->
 
 - Mk a diretory in the dirrectory humans/iam/
 - execute the script to generate the tokens
 
+### generate the tokens manually
+
 ```sh
-mkdir ~/humans/iam/gpgkeys
-cd ~/humans/iam/gpgkeys && touch generate_gpg_keys.sh
-chmod +x generate_gpg_keys.sh
-./generate_gpg_keys.sh
+gpg --generate-key
+gpg --export | base64 > afacollins1-public.gpg
+
+gpg --generate-key
+gpg --export | base64 > afacollins2-public.gpg
+
+gpg --generate-key
+gpg --export | base64 > afacollins3-public.gpg
+
+gpg --generate-key
+gpg --export | base64 > afacollins4-public.gpg
+
+gpg --generate-key
+gpg --export | base64 > afacollins5-public.gpg
+
+gpg --generate-key
+gpg --export | base64 > afacollins6-public.gpg
 ```
 
 ### Apply the tofu code
@@ -60,48 +75,51 @@ tofu validate
 tofu apply --auto-approve
 ```
 
-## Decrypt and get password for users and use that to login to the console
-```sh
-terraform init -upgrade
-echo $encrypted_password_acollins | base64 -d > acollins_encrypted_password.bin
-echo $encrypted_password_asusan   | base64 -d > asusan_encrypted_password.bin
-echo $encrypted_password_mallen   | base64 -d > mallen_encrypted_password.bin
-echo $encrypted_password_amyra    | base64 -d > amyra_encrypted_password.bin
-echo $encrypted_password_acecil   | base64 -d > acecil_encrypted_password.bin
-echo $encrypted_password_arose    | base64 -d > arose_encrypted_password.bin
+## after tofu has applied Decrypt and get password for users and use that to login to the console
 
-gpg -d encrypted_password.bin
+```sh
+gpg --list-secret-keys
+echo $encrypted_password_afacollins1 | base64 -d | gpg -vv -d
+echo $encrypted_password_afacollins2   | base64 -d | gpg -vv -d
+echo $encrypted_password_afacollins3   | base64 -d | gpg -vv -d
+echo $encrypted_password_afacollins4    | base64 -d | gpg -vv -d
+echo $encrypted_password_afacollins5   | base64 -d | gpg -vv -d
+echo $encrypted_password_afacollins6    | base64 -d | gpg -vv -d
+```
+
+***OR if thst method does not work, use the below***
+
+```sh
+tofu init -upgrade
+echo $encrypted_password_afacollins1 | base64 -d > afacollins1_encrypted_password.bin
+echo $encrypted_password_afacollins2   | base64 -d > afacollins2_encrypted_password.bin
+echo $encrypted_password_afacollins3   | base64 -d > afacollins3_encrypted_password.bin
+echo $encrypted_password_afacollins4    | base64 -d > afacollins4_encrypted_password.bin
+echo $encrypted_password_afacollins5   | base64 -d > afacollins5_encrypted_password.bin
+echo $encrypted_password_afacollins6    | base64 -d > afacollins6_encrypted_password.bin
+
+gpg -d afacollins1_encrypted_password.bin
+gpg -d afacollins2_encrypted_password.bin
+gpg -d afacollins3_encrypted_password.bin
+gpg -d afacollins4_encrypted_password.bin
+gpg -d afacollins5_encrypted_password.bin
+gpg -d afacollins6_encrypted_password.bin
 ```
 
 ## other debugging
+
+### deleting the gpg keys
 gpg --list-secret-keys
-echo $encrypted_password_asusan | base64 -d | gpg -vv -d
+gpg --list-secret-keys --with-colons
 
 
-## other commands... generating the tokens manually
+
+8A09EA4FEB76064E
+### optional - using scripts
+
 ```sh
-gpg --generate-key
-gpg --export | base64 > acollins-public.gpg
-
-gpg --generate-key
-gpg --export | base64 > asusan-public.gpg
-
-gpg --generate-key
-gpg --export | base64 > aallen-public.gpg
-
-gpg --generate-key
-gpg --export | base64 > amyra-public.gpg
-
-gpg --generate-key
-gpg --export | base64 > acecil-public.gpg
-
-gpg --generate-key
-gpg --export | base64 > arose-public.gpg
-
-acollins   afa.collins@gmail.com
-asusan     afa.susan@gmail.com
-aallen     afa.allen@gmail.com
-amyra      afa.myra@gmail.com
-acecil     afa.cecil@gmail.com
-arose      afa.rose@gmail.com
+mkdir ~/humans/iam/gpgkeys
+cd ~/humans/iam/gpgkeys && touch generate_gpg_keys.sh
+chmod +x generate_gpg_keys.sh
+./generate_gpg_keys.sh
 ```
