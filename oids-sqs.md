@@ -1,3 +1,10 @@
+aws ec2 describe-images --owners amazon --filters "Name=name,Values=bottlerocket-*" --region <your-region>
+aws ec2 describe-subnets --filters "Name=tag:karpenter.sh/discovery,Values=mimeo-karpenter-mng"
+aws ec2 describe-security-groups --filters "Name=tag:karpenter.sh/discovery,Values=mimeo-karpenter-mng"
+
+
+
+
 kubectl describe serviceaccount -n karpenter karpenter
 
 ## Example output:
