@@ -37,3 +37,58 @@ spec:
       operator: "Equal"
       value: "worker"
       effect: "NoSchedule"
+---
+## with storage
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: collins-test-worker
+spec:
+  entrypoint: claim-nodes
+  volumeClaimTemplates:
+  - metadata:
+      name: efs-claim
+    spec:
+      accessModes: ["ReadWriteMany"]
+      storageClassName: "efs-sc-test"
+      resources:
+        requests:
+          storage: 1Gi  # Adjust size as needed
+
+  templates:
+  - name: claim-nodes
+    steps:
+    - - name: run-on-shared-worker
+        template: node-job
+        arguments:
+          parameters:
+            - name: job-id
+              value: "shared-worker-claim-one"
+    - - name: run-on-shared-worker-again
+        template: node-job
+        arguments:
+          parameters:
+            - name: job-id
+              value: "shared-worker-claim-two"
+  - name: node-job
+    inputs:
+      parameters:
+      - name: job-id
+    container:
+      image: alpine:3.13
+      command: ["/bin/sh", "-c"]
+      args: ["echo Claiming node with job id {{inputs.parameters.job-id}} && ls /mnt/efs"]
+      volumeMounts:
+      - mountPath: /mnt/efs
+        name: efs-claim  # Reference to the EFS PVC
+    nodeSelector:
+      kubernetes.io/arch: amd64
+      kubernetes.io/os: linux
+      node-type: worker
+      pool-type: shared-pipeline-pool
+    tolerations:
+    - key: "s3gis.be/pool"
+      operator: "Equal"
+      value: "worker"
+      effect: "NoSchedule"
+
