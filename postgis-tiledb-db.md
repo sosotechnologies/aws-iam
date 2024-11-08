@@ -55,3 +55,17 @@ SELECT usename, usesuper FROM pg_catalog.pg_user WHERE usename = 'postgis';
 ```sh
 DROP DATABASE IF EXISTS tiledb;
 ```
+
+#-------------------------------------------------------------------
+## install postgres client
+sudo rm /etc/apt/sources.list.d/pgdg.list
+
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ jammy-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+sudo apt update
+
+sudo apt install postgresql-client-16
+
+psql --version
