@@ -33,3 +33,14 @@ This year, I have been focusing on advancing my technical expertise to better su
 Support Sales Initiative
 
 Throughout the year, I have actively contributed to our sales initiatives by providing essential support aimed at driving growth and expanding our market reach. This included collaborating closely with the sales team to align our technical and operational capabilities with customer needs, ensuring our solutions are positioned effectively in competitive pitches. Additionally, I have been involved in refining our product documentation and support resources to make them more accessible and impactful for potential clients. Moving forward, I am committed to strengthening this support further, finding new ways to enhance our responsiveness to sales requirements and contribute to overall revenue targets.
+-------------
+In my dual role as a Manager and Senior DevOps Engineer, I am focused on honing both my technical expertise and leadership abilities to support our team’s growth and performance. My development plans center around three core areas:
+
+Leadership and Mentorship: I aim to strengthen my leadership skills to better support my team and foster a collaborative and high-performance environment. To achieve this, I plan to participate in leadership training, actively seek feedback from team members, and establish regular one-on-one sessions to better understand and support individual development needs. The desired outcome is to build a more cohesive and empowered team that consistently meets our goals.
+
+Advanced Cloud and Automation Expertise: With DevOps at the forefront of our operations, I am dedicated to advancing my skills in cloud architecture and automation. This includes pursuing certifications in Azure and AWS to deepen my cloud platform knowledge, as well as focusing on advanced automation tools to optimize our CI/CD pipelines. The goal is to enhance our deployment efficiency and reliability, aligning with industry best practices to maximize value.
+
+Strategic Project Management: As our team scales, it’s essential to streamline project planning and execution. I am working on strengthening my project management skills by adopting agile methodologies and exploring project management tools that suit our workflows. My aim is to improve project delivery timelines and enhance cross-departmental collaboration, ensuring that all initiatives align with broader company objectives.
+
+By focusing on these development areas, I look forward to contributing to a stronger, more agile DevOps team and a more efficient, supportive work environment.
+
