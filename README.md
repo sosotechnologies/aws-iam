@@ -1,107 +1,35 @@
-## Opentofu IAM Users with Policy statements
+People Leadership and Engagement Priorities:
 
-<!-- 
-.
-├── humans
-│   └── iam
-│       ├── README.md
-│       ├── main.tf
-│       ├── outputs.tf
-│       ├── public.gpg
-│       └── variables.tf
-└── modules
-    ├── iam-policy
-    │   ├── main.tf
-    │   ├── output.tf
-    │   ├── variables.tf
-    │   └── versions.tf
-    └── iam-user
-        ├── main.tf
-        ├── outputs.tf
-        ├── public.gpg
-        ├── variables.tf
-        └── versions.tf
--->
+Over the past year, I have worked diligently to build a more collaborative and cohesive team environment, focusing especially on supporting new team members and fostering engagement within our group. While there were areas where I was able to provide guidance and accountability in key projects, I recognize that I have opportunities to deepen my involvement in team integration activities and to strengthen individual connections across the team.
 
-### using gpg password
-[https://stackoverflow.com/questions/53534722/how-to-enable-the-console-login-for-iam-user-in-terraform](https://stackoverflow.com/questions/53534722/how-to-enable-the-console-login-for-iam-user-in-terraform)
+Moving forward, I am committed to enhancing these efforts by taking an even more proactive approach to team building and by prioritizing one-on-one interactions that encourage each team member’s development and sense of belonging. I am actively working on improving my approach to ensure that our team remains well-connected, engaged, and motivated.
 
-PGP key with aws_iam_user_login_profile is a secure method to generate and encrypt the password for IAM users. 
-This approach is preferred when you want to maintain high security, especially for sensitive credentials. 
+2024 Performance Measures and KPI Overall Summary:
 
-***Set Up a PGP Key:***
+Throughout 2024, I have made consistent progress toward our performance measures and key performance indicators, focusing on delivering quality results that align with our team’s goals. I have worked to meet established targets and have proactively addressed any challenges that emerged. This year has provided valuable insights into areas where our processes can be streamlined, allowing me to adapt strategies and enhance productivity to support overall team objectives.
 
-- Create a gpg key for each user
-
-<!-- 
-acollins   afa.collins@gmail.com
-asusan     afa.susan@gmail.com
-aallen     afa.allen@gmail.com
-amyra      afa.myra@gmail.com
-acecil     afa.cecil@gmail.com
-arose      afa.rose@gmail.com 
--->
-
-- Mk a diretory in the dirrectory humans/iam/
-- execute the script to generate the tokens
-
-```sh
-mkdir ~/humans/iam/gpgkeys
-cd ~/humans/iam/gpgkeys && touch generate_gpg_keys.sh
-chmod +x generate_gpg_keys.sh
-./generate_gpg_keys.sh
-```
-
-### Apply the tofu code
-```sh
-tofu init
-tofu plan
-tofu validate
-tofu apply --auto-approve
-```
-
-## Decrypt and get password for users and use that to login to the console
-```sh
-terraform init -upgrade
-echo $encrypted_password_acollins | base64 -d > acollins_encrypted_password.bin
-echo $encrypted_password_asusan   | base64 -d > asusan_encrypted_password.bin
-echo $encrypted_password_mallen   | base64 -d > mallen_encrypted_password.bin
-echo $encrypted_password_amyra    | base64 -d > amyra_encrypted_password.bin
-echo $encrypted_password_acecil   | base64 -d > acecil_encrypted_password.bin
-echo $encrypted_password_arose    | base64 -d > arose_encrypted_password.bin
-
-gpg -d encrypted_password.bin
-```
-
-## other debugging
-gpg --list-secret-keys
-echo $encrypted_password_asusan | base64 -d | gpg -vv -d
+Looking ahead, I am committed to building on this foundation by refining these processes further and focusing on opportunities to improve efficiency and impact. I am eager to leverage the successes and lessons from this year to meet and exceed our goals in 2025.
 
 
-## other commands... generating the tokens manually
-```sh
-gpg --generate-key
-gpg --export | base64 > acollins-public.gpg
+Agile Player: Teamwork, Speed of Delivery, Industry Knowledge
 
-gpg --generate-key
-gpg --export | base64 > asusan-public.gpg
+In 2024, I focused on enhancing my contributions as an agile player across key areas.
 
-gpg --generate-key
-gpg --export | base64 > aallen-public.gpg
+Teamwork: I actively collaborated with team members, fostering open communication and supporting an inclusive environment. This involved participating in sprint planning, reviews, and retrospectives to ensure alignment and clear understanding of tasks, as well as providing feedback and assistance to help the team succeed collectively. Moving forward, I am committed to building even stronger connections and encouraging more peer collaboration for improved team dynamics.
 
-gpg --generate-key
-gpg --export | base64 > amyra-public.gpg
+Speed of Delivery: I have continuously sought ways to streamline workflows, adapt quickly to new information, and meet sprint goals on time. I aimed to optimize the development cycle by staying focused on prioritized tasks and addressing blockers promptly. I recognize that further improvements can be made, and I am actively exploring tools and methods to increase efficiency and reduce delivery times even more effectively.
 
-gpg --generate-key
-gpg --export | base64 > acecil-public.gpg
+Industry Knowledge: Throughout the year, I have worked to keep up-to-date with industry best practices and emerging trends relevant to our projects. This has included participating in training sessions, reading industry publications, and applying new insights to our work where appropriate. Going forward, I am focused on deepening my expertise to continue bringing valuable knowledge to our team’s agile practices and to ensure our methods remain competitive and aligned with the industry.
 
-gpg --generate-key
-gpg --export | base64 > arose-public.gpg
+Business Builder: Project Relations
 
-acollins   afa.collins@gmail.com
-asusan     afa.susan@gmail.com
-aallen     afa.allen@gmail.com
-amyra      afa.myra@gmail.com
-acecil     afa.cecil@gmail.com
-arose      afa.rose@gmail.com
-```
+In 2024, I focused on advancing our business builder initiatives, particularly through developing project relations and expanding our market reach. A significant milestone this year has been the process of listing our product, Mader, on the Amazon marketplace. This step is part of our strategic effort to increase product visibility, tap into a larger customer base, and drive growth in a competitive online marketplace. I have been actively involved in coordinating the necessary steps for this listing, from aligning product specifications with Amazon’s requirements to ensuring that marketing materials are optimized for customer engagement. Moving forward, I am committed to further strengthening our project relations, supporting product success, and identifying new avenues for market expansion.
+
+
+La Nanique
+
+This year, I have been focusing on advancing my technical expertise to better support our team and align with emerging industry standards. I am currently working towards my Azure Developer Certification, which will equip me with the skills to leverage cloud technologies more effectively within our projects. Additionally, I am planning to pursue a Master’s degree in Cybersecurity, which will enhance my ability to address complex security challenges and safeguard our digital assets. Both these pursuits reflect my commitment to continuous growth and ensuring that our team benefits from up-to-date knowledge in cloud and cybersecurity best practices.
+
+Support Sales Initiative
+
+Throughout the year, I have actively contributed to our sales initiatives by providing essential support aimed at driving growth and expanding our market reach. This included collaborating closely with the sales team to align our technical and operational capabilities with customer needs, ensuring our solutions are positioned effectively in competitive pitches. Additionally, I have been involved in refining our product documentation and support resources to make them more accessible and impactful for potential clients. Moving forward, I am committed to strengthening this support further, finding new ways to enhance our responsiveness to sales requirements and contribute to overall revenue targets.
