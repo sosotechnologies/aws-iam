@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mimeo-userdata
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mimeo-userdata
+  template:
+    metadata:
+      labels:
+        app: mimeo-userdata
+    spec:
+      nodeSelector:
+        intent: mimeo-userdata
+      containers:
+      - name: mimeo-userdata
+        image: public.ecr.aws/eks-distro/kubernetes/pause:3.7
+        resources:
+          requests:
+            cpu: 512m
+            memory: 512Mi
+      tolerations:
+      - key: "s3gis.be/pool"
+        operator: "Equal"
+        value: "mimeo-userdata"
+        effect: "NoSchedule"

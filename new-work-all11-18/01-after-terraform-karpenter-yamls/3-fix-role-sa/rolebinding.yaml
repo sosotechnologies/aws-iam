@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argo-pod-patch-binding
+  namespace: argo-workflows
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: argo-pod-patch-role
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: argo-workflows

@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: s3-list-buckets
+spec:
+  entrypoint: list-s3-buckets
+  templates:
+  - name: list-s3-buckets
+    container:
+      image: amazonlinux:2
+      command: [ "bash", "-c" ]
+      args:
+        - |
+          yum install -y aws-cli
+          aws s3 ls

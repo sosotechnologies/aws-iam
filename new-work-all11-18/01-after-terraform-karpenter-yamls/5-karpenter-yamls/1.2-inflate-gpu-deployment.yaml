@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inflate-video-gpu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      node-type: video-gpu
+  template:
+    metadata:
+      labels: 
+        node-type: video-gpu
+        pool-type: video-pipeline-pool
+    spec:
+      terminationGracePeriodSeconds: 600
+      containers:
+      - image: public.ecr.aws/eks-distro/kubernetes/pause:3.7
+        name: inflate
+        resources:
+          limits:
+            cpu: "6"
+            memory: "30G"
+          requests:
+            cpu: "6"
+            memory: "30G"
+      # explicit workflow toleration                
+      tolerations:
+      - key: "s3gis.be/pool"
+        operator: "Equal"
+        value: "video-gpu"
+        effect: "NoSchedule"
