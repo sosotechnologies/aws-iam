@@ -1,0 +1,79 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch
+  namespace: eck
+spec:
+  version: 8.13.2
+  nodeSets:
+    - name: default
+      count: 1
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data # Matches the PVC claim
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 10Gi
+            storageClassName: gp2
+      config: 
+        node.store.allow_mmap: false
+      podTemplate:
+        metadata:
+          annotations:
+            traffic.sidecar.istio.io/includeInboundPorts: "*"
+            traffic.sidecar.istio.io/excludeOutboundPorts: "9300,443"
+            traffic.sidecar.istio.io/excludeInboundPorts: "9300"
+          labels:
+            elasticsearch.k8s.elastic.co/cluster-name: elasticsearch
+            node-type: video-cpu
+            pool-type: shared-pipeline-pool
+        spec:
+          securityContext:
+            fsGroup: 1000
+            runAsGroup: 1000
+            runAsUser: 1000
+          serviceAccountName: elasticsearch-sa
+          automountServiceAccountToken: true
+          containers:
+            - name: elasticsearch
+              image: docker.elastic.co/elasticsearch/elasticsearch:8.13.2
+              # env:
+              #   - name: discovery.type
+              #     value: single-node
+              
+              # readinessProbe:
+              #   httpGet:
+              #     path: /_cluster/health
+              #     port: 9200
+              #     scheme: HTTP
+              #   initialDelaySeconds: 10
+              #   periodSeconds: 5
+              #   timeoutSeconds: 5
+              #   successThreshold: 1
+              #   failureThreshold: 3
+              resources:
+                requests:
+                  memory: "2Gi"
+                  cpu: "1"
+                limits:
+                  memory: "2Gi"
+                  cpu: "2"
+          initContainers:
+            - name: install-plugins
+              command:
+                - sh
+                - -c
+                - |
+                  bin/elasticsearch-plugin remove --purge analysis-icu
+                  bin/elasticsearch-plugin install --batch analysis-icu
+              volumeMounts:
+                - mountPath: /usr/share/elasticsearch/data
+                  name: elasticsearch-data
+          tolerations:
+            - key: "s3gis.be/pool"
+              operator: "Equal"
+              value: "video-cpu"
+              effect: "NoSchedule"
